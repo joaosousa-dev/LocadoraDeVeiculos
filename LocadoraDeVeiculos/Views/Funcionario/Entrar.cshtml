@@ -1,0 +1,76 @@
+﻿
+@model LocadoraDeVeiculos.Dominio.Funcionario
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Entrar</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+
+
+<body>
+    @using (Html.BeginForm("Entrar", "Funcionario", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="container" style="border-style:solid; border-radius:10px;background:rgb(128, 128, 128); width:30%; height:100%; padding:50px; margin:auto; margin-top:10%; display: flex; flex-direction: row; justify-content: center; align-items: center">
+            <div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+
+                    <div style="width:100%">
+                        @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control", placeholder = "Login" } })
+                        @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+                        <br /><br />
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <div>
+                        @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control", placeholder = "Senha" } })
+                        @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+                        <br /><br />
+                    </div>
+                    <div class="col-md-10">
+                        <select id="nivel" name="nivel" class="form-control">
+                            <option value=1>Atendente</option>
+                            <option value=2>Gerente</option>
+                            <option value=3>Administrador</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.Nivel, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-1 col-md-10">
+                        <input type="submit" value="Entrar" class="btn btn-primary" style="margin-left:31%" />
+                        @if (Session["usuarioNegado"] != null)
+                        {
+                            <h5 style="color:red">Usuário ou senha incorretos,Tente novamente</h5>
+                            Session["usuarioNegado"] = null;
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    }
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+    <br />
+</body>
+</html>
