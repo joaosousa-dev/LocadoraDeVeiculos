@@ -60,7 +60,10 @@ nome_funcionario varchar(50) not  null,
 data_nascimento date not null,
 email_funcionario varchar(30) not null,
 cpf_funcionario varchar(15) not null,
-sexo_funcionario varchar(10));
+sexo_funcionario varchar(10),
+usuario varchar(20) not null,
+senha varchar(15) not null,
+nivel_login int);
 
 CREATE TABLE Cliente(
 cpf_cliente varchar(15) primary key not null,
@@ -69,26 +72,14 @@ email_cliente varchar(30) not null,
 data_nasc_cliente date not null,
 cnh_cliente int not null,
 sexo_cleinte varchar(10) not null,
-vencimento_cnh date not null);
-
-CREATE TABLE Login(
-cod_login int primary key auto_increment,
-cod_funcionario int references Funcionario(cod_funcionario),
-cod_cliente int references Cliente(cod_cliente),
-usuario varchar(20) not null,
-senha varchar(15) not null,
-nivel_login int not null);
-
-CREATE TABLE Enderenco(
-cod_endereco int primary key auto_increment,
-cod_funcionario int references Funcionario(cod_funcionario),
-cod_cliente int references Cliente(cod_cliente),
 logradouro varchar(50) not null,
 numero varchar(10) not null,
 CEP int not null,
 cidade varchar(50) not null,
 UF varchar(5) not null,
-bairro varchar(30) not null);
+bairro varchar(30) not null,
+usuario varchar(20) not null,
+senha varchar(15) not null);
 
 CREATE TABLE Telefone(
 cod_telefone int primary key auto_increment,

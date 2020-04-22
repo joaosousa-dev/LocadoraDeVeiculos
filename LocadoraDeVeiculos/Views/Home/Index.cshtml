@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Início";
 }
-@using (Html.BeginForm("Entrar", "Funcionario", FormMethod.Post))
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     <div class="modal fade text-center" tabindex="-1" id="LoginModal" data-keyboard="false" data-backdrop="static">
@@ -54,7 +54,7 @@
                     <input type="submit" value="Entrar" class="btn btn-primary" />
                     @if (Session["usuarioNegado"] != null)
                     {
-                        <h5 style="color:red">Usuário ou senha incorretos,Tente novamente</h5>
+                        <script>alert("Usuário ou senha incorretos")</script>
                         Session["usuarioNegado"] = null;
                     }
                 </div>
