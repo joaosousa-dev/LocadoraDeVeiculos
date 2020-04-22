@@ -1,4 +1,67 @@
-﻿@{
+﻿@model LocadoraDeVeiculos.Dominio.Funcionario
+@{
     ViewBag.Title = "Início";
+}
+@using (Html.BeginForm("Entrar", "Funcionario", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="modal fade text-center" tabindex="-1" id="LoginModal" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Login</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div>
+
+                            <div style="display:inline-block">
+
+                                @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control", placeholder = "Login" } })
+                                @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+
+                            </div>
+                            <br /> <br />
+                        </div>
+                    </div>
+
+                    <div>
+
+                        <div style="display:inline-block;">
+                            @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control", placeholder = "Senha" } })
+                            @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+                            <br />
+                        </div>
+
+                    </div>
+                    <div style="display:inline-block">
+                        <select id="nivel" name="nivel" class="form-control">
+                            <option value=1>Atendente</option>
+                            <option value=2>Gerente</option>
+                            <option value=3>Administrador</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.Nivel, "", new { @class = "text-danger" })
+                        <br />
+                    </div>
+
+
+                </div>
+                <div>
+                    <input type="submit" value="Entrar" class="btn btn-primary" />
+                    @if (Session["usuarioNegado"] != null)
+                    {
+                        <h5 style="color:red">Usuário ou senha incorretos,Tente novamente</h5>
+                        Session["usuarioNegado"] = null;
+                    }
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+
 }
 
