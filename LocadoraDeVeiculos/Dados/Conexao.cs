@@ -12,7 +12,7 @@ namespace LocadoraDeVeiculos.Dados
         private MySqlConnection con; 
         public Conexao()
         {
-            con=new MySqlConnection("Server=localhost; DataBase=LocadoraSeven; User=root;pwd=joaovictor");
+            con=new MySqlConnection("Server=localhost; DataBase=LocadoraSeven; User=root;pwd=1234567");
             con.Open();        
         }
 

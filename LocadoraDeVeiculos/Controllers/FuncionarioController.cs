@@ -11,6 +11,9 @@ namespace LocadoraDeVeiculos.Controllers
 {
     public class FuncionarioController : Controller
     {
-        
+        public ActionResult Index()
+        {
+            return View();
+        }
     }
 }

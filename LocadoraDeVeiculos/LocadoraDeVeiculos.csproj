@@ -145,6 +145,30 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagens\carro1.jpg" />
+    <Content Include="Imagens\carro2.jpeg" />
+    <Content Include="Imagens\carro3.jpg" />
+    <Content Include="Imagens\carrofamilia.jpg" />
+    <Content Include="Imagens\carroseg.jpg" />
+    <Content Include="Imagens\carroviajar.jpg" />
+    <Content Include="Imagens\dunlexcar.png" />
+    <Content Include="Imagens\dunlexcar1.svg" />
+    <Content Include="Imagens\dunlexlogo.png" />
+    <Content Include="Imagens\fordka.jpg" />
+    <Content Include="Imagens\Funcionario2.jpg" />
+    <Content Include="Imagens\Funcionariosimg.jpg" />
+    <Content Include="Imagens\hrv.jpg" />
+    <Content Include="Imagens\images.jfif" />
+    <Content Include="Imagens\jettatsi.jpg" />
+    <Content Include="Imagens\KAiTghC.jpg" />
+    <Content Include="Imagens\onix.jpg" />
+    <Content Include="Imagens\relax_4k.jpg" />
+    <Content Include="Imagens\sandero-rs.jpg" />
+    <Content Include="Imagens\small-memory-lp.jpg" />
+    <Content Include="Imagens\thumb-1920-502124.jpg" />
+    <Content Include="Imagens\voyage.jpg" />
+    <Content Include="Imagens\wallpaper4.jfif" />
+    <Content Include="Imagens\índice.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -267,7 +291,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LayoutIndex.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_ViewAdministrativa.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
@@ -280,6 +304,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Funcionario\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

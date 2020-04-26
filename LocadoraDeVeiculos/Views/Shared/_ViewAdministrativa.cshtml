@@ -1,6 +1,4 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
+﻿<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Take Car</title>
@@ -8,38 +6,39 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Take Car", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Funcionarios", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Clientes", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Veiculos", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Reservas", "Index", "Home")</li>
-                </ul>
-            </div>
+    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Take Car</a>
+        
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="#">Sair</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar" style="background-color:aqua">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link active" href="#">@Html.ActionLink("Funcionarios", "Index", "Home")</a><br /></li>
+                        <li class="nav-item"><a class="nav-link active" href="#">@Html.ActionLink("Clientes", "Index", "Home")</a><br /></li>
+                        <li class="nav-item"><a class="nav-link active" href="#">@Html.ActionLink("Veiculos", "Index", "Home")</a><br /></li>
+                        <li class="nav-item"><a class="nav-link active" href="#">@Html.ActionLink("Reservas", "Index", "Home")</a></li>
+                    </ul>   
+                </div>
+            </nav>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="col-md-9 ml-sm-auto col-lg-10 px-4">
         @RenderBody()
         <hr />
-        <footer>
+        <footer class="container">
             <p>&copy; @DateTime.Now.Year - Take Car</p>
         </footer>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/inputmask")
     @RenderSection("scripts", required: false)
 </body>
-</html>
-

@@ -1,0 +1,112 @@
+﻿@model LocadoraDeVeiculos.Dominio.Funcionario
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Take Car</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                <a class="navbar-brand" href="#">Take Car</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        </li>
+                    </ul>
+                    <button type="button" class="btn btn-default btn-lg" id="myBtn" data-toggle="modal" data-target="#LoginModal">Login</button>
+                </div>
+            </nav>
+        </header>
+    </div>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="modal fade text-center" tabindex="-1" id="LoginModal" data-keyboard="false" data-backdrop="static">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h4 class="modal-title w-100 font-weight-bold">Login</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body mx-3">
+                        <div>
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div>
+
+                                <div style="display:inline-block">
+
+                                    @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control", placeholder = "Login" } })
+                                    @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+
+                                </div>
+                                <br /> <br />
+                            </div>
+                        </div>
+
+                        <div>
+
+                            <div style="display:inline-block;">
+                                @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control", placeholder = "Senha" } })
+                                @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+                                <br />
+                            </div>
+
+                        </div>
+                        <div style="display:inline-block">
+                            <select id="nivel" name="nivel" class="form-control">
+                                <option value=1>Atendente</option>
+                                <option value=2>Gerente</option>
+                                <option value=3>Administrador</option>
+                            </select>
+                            @Html.ValidationMessageFor(model => model.Nivel, "", new { @class = "text-danger" })
+                            <br />
+                        </div>
+
+
+                    </div>
+                    <div>
+                        <input type="submit" value="Entrar" class="btn btn-primary" />
+                        @if (Session["usuarioNegado"] != null)
+                        {
+                            <script>alert("Usuário ou senha incorretos")</script>
+                            Session["usuarioNegado"] = null;
+                        }
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+
+    }
+    <div>
+        @RenderBody()
+        <hr />
+        <footer class="container">
+            <p>&copy; @DateTime.Now.Year - Take Car</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/inputmask")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
