@@ -4,6 +4,7 @@
     <title>@ViewBag.Title - Take Car</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/dashboard/">
 </head>
 <body>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
@@ -18,14 +19,25 @@
 
     <div class="container-fluid">
         <div class="row">
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar" style="background-color:aqua">
+            <nav class="col-md-2 d-none d-md-block bg-light sidebar"  style="position:fixed">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
-                        <li class="nav-item"><a class="nav-link active" href="#">@Html.ActionLink("Funcionarios", "Index", "Home")</a><br /></li>
-                        <li class="nav-item"><a class="nav-link active" href="#">@Html.ActionLink("Clientes", "Index", "Home")</a><br /></li>
-                        <li class="nav-item"><a class="nav-link active" href="#">@Html.ActionLink("Veiculos", "Index", "Home")</a><br /></li>
-                        <li class="nav-item"><a class="nav-link active" href="#">@Html.ActionLink("Reservas", "Index", "Home")</a></li>
-                    </ul>   
+                        <li class="nav-item"><a class="nav-link active">@Html.ActionLink("Funcionarios", "Index", "Home")</a><br /></li>
+                    </ul>
+                    <br />
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link active">@Html.ActionLink("Clientes", "Index", "Home")</a><br /></li>
+                    </ul>
+                    <br />
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link active">@Html.ActionLink("Veiculos", "Index", "Home")</a><br /></li>
+                    </ul>
+                    <br />
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link active">@Html.ActionLink("Reservas", "Index", "Home")</a></li>
+                    </ul>
+                    <br />
+                    
                 </div>
             </nav>
         </div>
