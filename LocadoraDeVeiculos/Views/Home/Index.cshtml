@@ -1,11 +1,16 @@
 ﻿@{
+
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+
+@{
     ViewBag.Title = "Início";
 }
 
 
 
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
 
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/jqueryval")
@@ -20,8 +25,8 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="~/Imagens/jettatsi.jpg" class="img-fluid d-block"/>
-                
+                <img src="~/Imagens/jettatsi.jpg" class="img-fluid d-block" />
+
                 <div class="container">
                     <div class="carousel-caption text-left">
                         <h1>Example headline.</h1>
@@ -103,7 +108,7 @@
 
     </div>
     </div>
-     @section Scripts {
+    @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
     }
 </body>

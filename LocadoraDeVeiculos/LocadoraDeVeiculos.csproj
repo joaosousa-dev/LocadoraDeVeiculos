@@ -129,6 +129,7 @@
     <Compile Include="Dados\Conexao.cs" />
     <Compile Include="Dominio\Cliente.cs" />
     <Compile Include="Dominio\Funcionario.cs" />
+    <Compile Include="Dominio\Login.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -279,8 +280,8 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
-    <Content Include="Views\Funcionario\Entrar.cshtml" />
     <Content Include="Views\Home\Cadastro.cshtml" />
+    <Content Include="Views\Shared\_LayoutIndex.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -291,7 +292,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_LayoutIndex.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_ViewAdministrativa.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />

@@ -65,21 +65,24 @@ usuario varchar(20) not null,
 senha varchar(15) not null,
 nivel_login int);
 
+insert into funcionario(cod_funcionario,nome_funcionario,data_nascimento,email_funcionario,cpf_funcionario,sexo_funcionario,usuario,senha,nivel_login) values (default,"jose","2001-03-02","jvoliveira@gmail.com","321.213.342-03","MASCULINO","jose123","12345",3);
+select * from funcionario;
 CREATE TABLE Cliente(
 cpf_cliente varchar(15) primary key not null,
 nome_cliente varchar(50) not null,
 email_cliente varchar(30) not null,
 data_nasc_cliente date not null,
-cnh_cliente int not null,
-sexo_cleinte varchar(10) not null,
+cnh_cliente varchar(11) not null,
+sexo_cliente varchar(10) not null,
 logradouro varchar(50) not null,
 numero varchar(10) not null,
-CEP int not null,
+CEP varchar(9) not null,
 cidade varchar(50) not null,
 UF varchar(5) not null,
 bairro varchar(30) not null,
 usuario varchar(20) not null,
-senha varchar(15) not null);
+senha varchar(15) not null,
+nivel_login int not null);
 
 CREATE TABLE Telefone(
 cod_telefone int primary key auto_increment,
@@ -87,6 +90,25 @@ cod_funcionario int references Funcionario(cod_funcionario),
 cod_cliente int references Cliente(cod_cliente),
 numero_tel int not null,
 numero_cel int not null);
+
+create table login(
+cpf_cliente varchar(15) null references cliente(cpf_cliente),
+cod_funcionario int null references funcionario(cod_funcionario),
+usuario varchar(20),
+senha varchar(15),
+nivel int);
+
+create trigger tr_login after insert
+on cliente
+for each row
+insert into login(cpf_cliente,usuario,senha,nivel) values(new.cpf_cliente,new.usuario,new.senha,new.nivel_login);
+
+create trigger tr_login_func after insert
+on funcionario
+for each row
+insert into login(cod_funcionario,usuario,senha,nivel) values(new.cod_funcionario,new.usuario,new.senha,new.nivel_login);
+select * from login;
+
 
 SELECT * FROM Categoria;
 

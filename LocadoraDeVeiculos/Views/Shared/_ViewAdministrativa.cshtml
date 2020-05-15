@@ -1,4 +1,5 @@
-﻿<head>
+﻿
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Take Car</title>
@@ -7,50 +8,60 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/dashboard/">
 </head>
 <body>
-    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Take Car</a>
-        
-        <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-                <a class="nav-link" href="#">Sair</a>
-            </li>
-        </ul>
-    </nav>
+    @if (Session["usuarioLogado"] != null && (Session["nivel"].ToString() == "2" || Session["nivel"].ToString() == "3"))
+    {
+        <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Take Car</a>
 
-    <div class="container-fluid">
-        <div class="row">
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar"  style="position:fixed">
-                <div class="sidebar-sticky">
-                    <ul class="nav flex-column">
-                        <li class="nav-item"><a class="nav-link active">@Html.ActionLink("Funcionarios", "Index", "Home")</a><br /></li>
-                    </ul>
-                    <br />
-                    <ul class="nav flex-column">
-                        <li class="nav-item"><a class="nav-link active">@Html.ActionLink("Clientes", "Index", "Home")</a><br /></li>
-                    </ul>
-                    <br />
-                    <ul class="nav flex-column">
-                        <li class="nav-item"><a class="nav-link active">@Html.ActionLink("Veiculos", "Index", "Home")</a><br /></li>
-                    </ul>
-                    <br />
-                    <ul class="nav flex-column">
-                        <li class="nav-item"><a class="nav-link active">@Html.ActionLink("Reservas", "Index", "Home")</a></li>
-                    </ul>
-                    <br />
-                    
-                </div>
-            </nav>
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap">
+                    <a class="nav-link" href="#">Sair</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-md-2 d-none d-md-block bg-light sidebar" style="position:fixed">
+                    <div class="sidebar-sticky">
+                        <ul class="nav flex-column">
+                            <li class="nav-item"><a class="nav-link active">@Html.ActionLink("Funcionarios", "Index", "Home")</a><br /></li>
+                        </ul>
+                        <br />
+                        <ul class="nav flex-column">
+                            <li class="nav-item"><a class="nav-link active">@Html.ActionLink("Clientes", "Index", "Home")</a><br /></li>
+                        </ul>
+                        <br />
+                        <ul class="nav flex-column">
+                            <li class="nav-item"><a class="nav-link active">@Html.ActionLink("Veiculos", "Index", "Home")</a><br /></li>
+                        </ul>
+                        <br />
+                        <ul class="nav flex-column">
+                            <li class="nav-item"><a class="nav-link active">@Html.ActionLink("Reservas", "Index", "Home")</a></li>
+                        </ul>
+                        <br />
+
+                    </div>
+                </nav>
+            </div>
         </div>
-    </div>
-    <div class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        @RenderBody()
-        <hr />
-        <footer class="container">
-            <p>&copy; @DateTime.Now.Year - Take Car</p>
-        </footer>
-    </div>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/inputmask")
-    @RenderSection("scripts", required: false)
+
+        <div class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            @RenderBody()
+            <hr />
+            <footer class="container">
+                <p>&copy; @DateTime.Now.Year - Take Car</p>
+            </footer>
+        </div>
+        }
+    
+    
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/inputmask")
+        @RenderSection("scripts", required: false)
+    
+
 </body>
+    

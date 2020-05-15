@@ -18,18 +18,28 @@ namespace LocadoraDeVeiculos.Controllers
         }
         
         [HttpPost]
-        public ActionResult Index(Funcionario funcionario)
+        public ActionResult Index(Login login)
         {
 
-            funcionario = metodo.TestarUsuario(funcionario);
+        login = metodo.TestarUsuario(login);
 
 
-            if (funcionario.Login != null && funcionario.Senha != null && funcionario.Nivel !=null)
+            if (login.Usuario != null && login.Senha != null && login.Nivel !=null)
             {
-                FormsAuthentication.SetAuthCookie(funcionario.Login, false);
-                Session["usuarioLogado"] = funcionario.Login.ToString();
-                Session["senhaLogado"] = funcionario.Senha.ToString();
-                return RedirectToAction("Index", "Home");
+                FormsAuthentication.SetAuthCookie(login.Usuario, false);
+                Session["usuarioLogado"] = login.Usuario.ToString();
+                Session["senhaLogado"] = login.Senha.ToString();
+                Session["nivel"] = login.Nivel.ToString();
+                
+
+                if (login.Nivel == "1")
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Funcionario");
+                }
             }
             else
             {
