@@ -36,7 +36,7 @@
                     else
                     {
                         <button type="button" class="btn btn-default btn-lg" id="myBtn">@Session["usuarioLogado"]</button>
-                        <button type="button" class="btn btn-default btn-lg" id="myBtn">Logout</button>
+                        <input type="button" class="btn btn-default btn-lg" id="myBtn" value="Sair" onclick="location.href='@Url.Action("Logout", "Home")'" />
                     }
                 </div>
             </nav>
@@ -78,16 +78,6 @@
                             </div>
 
                         </div>
-                        <div style="display:inline-block">
-                            <select id="nivel" name="nivel" class="form-control">
-                                <option value=1>Atendente</option>
-                                <option value=2>Gerente</option>
-                                <option value=3>Administrador</option>
-                            </select>
-                            @Html.ValidationMessageFor(model => model.Nivel, "", new { @class = "text-danger" })
-                            <br />
-                        </div>
-
 
                     </div>
                     <div>
