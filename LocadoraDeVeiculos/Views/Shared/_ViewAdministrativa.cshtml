@@ -10,22 +10,23 @@
 <body>
     @if (Session["usuarioLogado"] != null && (Session["nivel"].ToString() == "2" || Session["nivel"].ToString() == "3"))
     {
-        <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-            <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Take Car</a>
+        <nav class="navbar navbar-dark fixed-top flex-md-nowrap p-0 shadow" style="background-color:rgb(255, 109, 0)">
+            <a class="navbar-brand col-sm-3 col-md-2 mr-0" style="" href="~/Funcionario/Index"><img width="90" height="40" src="~/Imagens/HorzontalcomSombra.png" /></a>
 
             <ul class="navbar-nav px-3">
                 <li class="nav-item text-nowrap">
-                    <a class="nav-link" href="#">Sair</a>
+                    <button type="button" style="color:black" class="btn btn-default btn-lg" id="myBtn">@Session["usuarioLogado"]</button>
+                    <input type="button" style="color:black" class="btn btn-default btn-lg" id="myBtn" value="Sair" onclick="location.href='@Url.Action("Logout", "Home")'" />
                 </li>
             </ul>
         </nav>
 
         <div class="container-fluid">
             <div class="row">
-                <nav class="col-md-2 d-none d-md-block bg-light sidebar" style="position:fixed">
+                <nav class="col-md-2 d-none d-md-block sidebar" style="background-color:rgba(128, 128, 128, 0.30)">
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column">
-                            <li class="nav-item"><a class="nav-link active">@Html.ActionLink("Funcionarios", "Index", "Home")</a><br /></li>
+                            <li class="nav-item"><a class="nav-link active" style="color:black">@Html.ActionLink("Funcionarios", "Index", "Home")</a><br /></li>
                         </ul>
                         <br />
                         <ul class="nav flex-column">
@@ -42,26 +43,41 @@
                         <br />
 
                     </div>
+
                 </nav>
+
             </div>
         </div>
-
-        <div class="col-md-9 ml-sm-auto col-lg-10 px-4">
-            @RenderBody()
-            <hr />
-            <footer class="container">
-                <p>&copy; @DateTime.Now.Year - Take Car</p>
-            </footer>
-        </div>
         }
-    
-    
+    else
+    {
+        <h3 class="jumbotron" style="color:red;text-align:center">Error 401 - Não autorizado</h3>
+    }
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @Scripts.Render("~/bundles/inputmask")
-        @RenderSection("scripts", required: false)
-    
+    <div class="col-md-9 ml-sm-auto col-lg-10 px-4 container" style="margin-top: -240px; margin-right: 10px">
+        @if (Session["usuarioLogado"] != null || HttpContext.Current.Request.AppRelativeCurrentExecutionFilePath.Contains("Login"))
+        {
+            @RenderBody()
+        }
+        else
+        {
+            Context.Response.Redirect("/Home/Index");
+        }
+        <hr />
+        <footer class="container">
+            <p>&copy; @DateTime.Now.Year - Take Car</p>
+        </footer>
+    </div>
+
+
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/inputmask")
+    @RenderSection("scripts", required: false)
+
 
 </body>
     

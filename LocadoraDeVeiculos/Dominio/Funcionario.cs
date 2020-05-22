@@ -13,7 +13,10 @@ namespace LocadoraDeVeiculos.Dominio
         [RegularExpression(@"[a-zA-Z0-9]{3,15}", ErrorMessage = "Apenas letras e números mínimo 3 caracteres")]
         [DisplayName("Login")]
         public string Login { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayName("Data de nascimento")]
         public DateTime DataNasc{ get; set; }
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         public string Sexo { get; set; }
       

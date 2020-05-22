@@ -13,7 +13,23 @@ namespace LocadoraDeVeiculos.Controllers
     {
         public ActionResult Index()
         {
+                return View();
+        }
+        public ActionResult Cadastro()
+        {
             return View();
         }
+        [HttpPost]
+        public ActionResult Cadastro(Funcionario funcionario)
+        {
+            if (ModelState.IsValid)
+            {
+                var metodo = new MetodosGerais();
+                metodo.CadastroFuncionario(funcionario);
+                return RedirectToAction("Index");
+            }
+            return View(funcionario);
+        }
+        
     }
 }
