@@ -48,7 +48,31 @@ namespace LocadoraDeVeiculos.Metodos
             strQuery = string.Format("INSERT INTO Funcionario(nome_funcionario,data_nascimento,email_funcionario,cpf_funcionario,sexo_funcionario,usuario,senha,nivel_login) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}');", funcionario.Nome, Convert.ToDateTime(funcionario.DataNasc).ToString("yyyy/MM/dd hh:mm:ss"), funcionario.Email, funcionario.Cpf, funcionario.Sexo, funcionario.Login, funcionario.Senha,funcionario.Nivel) ;
             banco.ExecutarComando(strQuery);
         }
-        
+        public void AtualizarFuncionario(Funcionario funcionario)
+        {
+            var strQuery = "";
+            strQuery += string.Format("UPDATE FUNCIONARIO SET ");
+            strQuery += string.Format("nome_funcionario='{0}',", funcionario.Nome);
+           // strQuery += string.Format("data_nascimento='{0}',", funcionario.DataNasc);
+            strQuery += string.Format("email_funcionario='{0}',", funcionario.Email);
+            strQuery += string.Format("cpf_funcionario='{0}',", funcionario.Cpf);
+            strQuery += string.Format("sexo_funcionario='{0}',", funcionario.Sexo);
+            strQuery += string.Format("usuario='{0}',", funcionario.Login);
+            strQuery += string.Format("senha='{0}' ", funcionario.Senha);
+            strQuery += string.Format("WHERE cod_funcionario={0}", funcionario.id);
+            banco.ExecutarComando(strQuery);
+
+        }
+        public void AtualizarSenhaFuncionario(Funcionario funcionario)
+        {
+            var strQuery = "";
+            strQuery += string.Format("UPDATE FUNCIONARIO SET ");
+            strQuery += string.Format("senha='{0}' ", funcionario.Senha);
+            strQuery += string.Format("WHERE cod_funcionario={0}", funcionario.id);
+            banco.ExecutarComando(strQuery);
+
+        }
+
         public void CadastroCliente(Cliente cliente)
         {
             var strQuery = "";
@@ -113,11 +137,58 @@ namespace LocadoraDeVeiculos.Metodos
         {
             using (banco = new Conexao())
             {
-                // var strQuery = string.Format("SELECT * FROM TELEFONE as T INNER JOIN CLIENTE as C on T.CPFCLIENTE = C.CPFCLIENTE where T.CPFCLIENTE={0}", cpf);
                 var strQuery = string.Format("SELECT * FROM CLIENTE where cpf_cliente='{0}'", cpf);
                 var retorno = banco.ExecultarConsulta(strQuery);
                 return ListaDeCLI(retorno).FirstOrDefault();
             }
+        }
+
+        public List<Funcionario> ListaDeFunc(MySqlDataReader retorno)
+        {
+            var funcionario = new List<Funcionario>();
+            while (retorno.Read())
+            {
+                var TempFunc = new Funcionario()
+                {
+                    id = int.Parse(retorno["cod_funcionario"].ToString()),
+                    Nome = retorno["nome_funcionario"].ToString(),
+                    Sexo = retorno["sexo_funcionario"].ToString(),
+                    Login = retorno["usuario"].ToString(),
+                    Email = retorno["email_funcionario"].ToString(),
+                    DataNasc = DateTime.Parse(retorno["data_nascimento"].ToString()),
+                    Cpf = retorno["cpf_funcionario"].ToString(),
+                    Nivel = retorno["nivel_login"].ToString()
+                };
+                funcionario.Add(TempFunc);
+            }
+            retorno.Close();
+            return funcionario;
+        }
+
+        public List<Funcionario> ListarFunc()
+        {
+            using (banco = new Conexao())
+            {
+                var strQuery = "SELECT * FROM funcionario;";
+                var retorno = banco.ExecultarConsulta(strQuery);
+                return ListaDeFunc(retorno);
+            };
+        }
+
+        public Funcionario ListaIdFuncionario(int id)
+        {
+            using (banco = new Conexao())
+            {
+                var strQuery = string.Format("SELECT * FROM Funcionario where cod_funcionario={0}", id);
+                var retorno = banco.ExecultarConsulta(strQuery);
+                return ListaDeFunc(retorno).FirstOrDefault();
+            }
+        }
+        public void ApagarFunc(int id)
+        {
+            var strQuery = "";
+            strQuery += string.Format("DELETE FROM Funcionario WHERE cod_funcionario={0}", id);
+            banco.ExecutarComando(strQuery);
         }
     }
 }

@@ -10,7 +10,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="container">
+    <div>
         <header>
             <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color:rgb(255, 109, 0)">
                 <a class="navbar-brand" href="~/Home/Index">
@@ -27,7 +27,7 @@
                         <li class="nav-item">
                             <a class="nav-link" style="color:black" href="#">Frota de veículos</a>
                         </li>
-                        @if (Session["usuarioLogado"] != null && Session["nivel"].ToString()=="1")
+                        @if (Session["usuarioLogado"] != null && Session["nivel"].ToString() == "1")
                         {
                             <li class="nav-item">
                                 <a class="nav-link" style="color:black" href="#" tabindex="-1" aria-disabled="true">Reservar</a>
@@ -43,13 +43,18 @@
                     </ul>
                     @if (Session["usuarioLogado"] == null)
                     {
-                        <button type="button" style="color:black" class="btn btn-default btn-lg" id="myBtn" data-toggle="modal" data-target="#LoginModal">Entrar</button>
-                        <input type="button"  style="color:black" class="btn btn-default btn-lg" id="myBtn" value="Cadastre-se" onclick="location.href='@Url.Action("Cadastro", "Home")'" />
+                        <button type="button" style="color: black" class="btn btn-default btn-lg" id="myBtn" data-toggle="modal" data-target="#LoginModal"> Entrar </button>
+                        <input type="button" style="color:black" class="btn btn-default btn-lg" id="myBtn" value="Cadastre-se" onclick="location.href='@Url.Action("Cadastro", "Home")'" />
                     }
                     else
                     {
                         <button type="button" style="color:black" class="btn btn-default btn-lg" id="myBtn">@Session["usuarioLogado"]</button>
-                        <input type="button"  style="color:black" class="btn btn-default btn-lg" id="myBtn" value="Sair" onclick="location.href='@Url.Action("Logout", "Home")'" />
+                        if (Session["usuarioLogado"] != null && (Session["nivel"].ToString() == "2" || Session["nivel"].ToString() == "3"))
+                        {
+                            <input type="button" style="color:black" class="btn btn-default btn-lg" id="myBtn" value="Área do funcionario" onclick="location.href='/Funcionario'" />
+                        }
+                        <input type="button" style="color:black" class="btn btn-default btn-lg" id="myBtn" value="Sair" onclick="location.href='@Url.Action("Logout", "Home")'" />
+
                     }
                 </div>
             </nav>
@@ -109,9 +114,66 @@
     }
     <div>
         @RenderBody()
-        <hr />
-        <footer class="container">
-            <p>&copy; @DateTime.Now.Year - Take Car</p>
+        <footer id="footer" class="footer" style="background-color:rgb(255, 109, 0)">
+            <br />
+            <div class="main-footer widgets-dark">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-xs-12 col-sm-6 col-md-3">
+                            <div class="widget subscribe no-box">
+                                <h4 class="widget-title">Take Car<span></span></h4>
+                                <p>Somos uma empresa nacional com mais de 5 anos de mercado que tenta oferecer o menor preço em toda região do Brasil.</p>
+                                <p>Nossa frota conta com mais de 100 veiculos a sua disponibilidade.</p>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 col-md-3">
+                            <div class="widget no-box">
+                                <h4 class="widget-title">Links Rápidos<span></span></h4>
+                                <ul class="thumbnail-widget">
+                                    <li>
+                                        <div class="thumb-content">@Html.ActionLink("Veículos", "Lista", "Veiculo")</div>
+                                    </li>
+                                    <li>
+                                        <div class="thumb-content">@Html.ActionLink("Categorias", "Lista", "Categoria")</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 col-md-3">
+                            <div class="widget no-box">
+                                <h4 class="widget-title">Sede Administrativa<span></span></h4>
+                                <p>Endereço: Rua Benedito Calixto, 358</p>
+                                <p>Pinheiros - São Paulo-SP</p>
+                                <p>CEP:05406-040</p>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-6 col-md-3">
+
+                            <div class="widget no-box">
+                                <h4 class="widget-title">Contate-nos<span></span></h4>
+
+                                <p><a href="mailto:takecarlocacao@contato.com.br" title="glorythemes">takecarlocacao@contato.com.br</a></p>
+                                <p>(11) 3695-2487 / (11) 95656-8486</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="footer-copyright text-center py-3">
+                            <p>&copy; @DateTime.Now.Year - Take Car Aluguel de Veiculos. Todos os direitos reservados</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </footer>
     </div>
 

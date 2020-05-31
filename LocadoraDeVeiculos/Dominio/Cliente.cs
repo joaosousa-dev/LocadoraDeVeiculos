@@ -21,6 +21,7 @@ namespace LocadoraDeVeiculos.Dominio
         [Required(ErrorMessage = "A Data de nascimento é obrigatória")]
         [DataType(DataType.Date)]
         public DateTime DataNasc { get; set; }
+        [RegularExpression(@"[1-9]{11}", ErrorMessage = "Preencha completo")]
         [Required(ErrorMessage = "A CNH é obrigatória")]
         public string Cnh { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
@@ -43,7 +44,7 @@ namespace LocadoraDeVeiculos.Dominio
 
         public string Bairro { get; set; }
         [DisplayName("Usuário")]
-        [RegularExpression(@"[a-zA-Z0-9]{3,50}", ErrorMessage = "Mínimo 3 caracteres")]
+        [RegularExpression(@"[a-zA-Z0-9]{3,50}", ErrorMessage = "Mínimo 3 caractéres, Não permitido caractéres especiais")]
         public string Login { get; set; }
         [DisplayName("Senha")]
         [Required(ErrorMessage = "A Senha é obrigatória")]

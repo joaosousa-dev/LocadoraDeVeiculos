@@ -1,0 +1,80 @@
+﻿@model IEnumerable<LocadoraDeVeiculos.Dominio.Funcionario>
+
+@{
+    ViewBag.Title = "Lista";
+    Layout = "~/Views/Shared/_ViewAdministrativa.cshtml";
+}
+
+<h2>Lista</h2>
+
+<p>
+    @Html.ActionLink("Cadastrar novo", "Cadastro")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Login)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataNasc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sexo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cpf)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nivel)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Login)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DataNasc)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Sexo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nome)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Cpf)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nivel)
+    </td>
+    <td>
+        @Html.ActionLink("Editar", "Editar", new { id = item.id })
+        @if (Session["usuarioLogado"] != null && (Session["nivel"].ToString() == "3"))
+        {
+            @Html.ActionLink("| Apagar ", "Apagar", new { id = item.id })
+
+            @Html.ActionLink("Alterar senha", "NovaSenha", new { id = item.id });
+        }
+    </td>
+</tr>
+}
+
+</table>

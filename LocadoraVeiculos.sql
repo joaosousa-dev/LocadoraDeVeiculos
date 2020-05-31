@@ -112,29 +112,49 @@ nivel int,
 foreign key (cod_funcionario) references funcionario(cod_funcionario),
 foreign key (cpf_cliente) references cliente(cpf_cliente));
 
+-- trigger que insere na tabela login com base na tabela cliente
 create trigger tr_login after insert
 on cliente
 for each row
 insert into login(cpf_cliente,usuario,senha,nivel) values(new.cpf_cliente,new.usuario,new.senha,new.nivel_login);
 
+-- trigger que altera a tabela login depois de alterar cliente 
 create trigger tr_login_edit after update
 on cliente
 for each row
 update login set senha = new.senha where cpf_cliente=old.cpf_cliente ;
 
+-- trigger que altera a tabela login com base na tabela funcionario alterada
 create trigger tr_login_edit_func after update
 on funcionario
 for each row
 update login set senha = new.senha where cod_funcionario=old.cod_funcionario;
 
+-- trigger que altera a tabela login com base na tabela funcionario alterada
+create trigger tr_login_edit_funcUsu after update
+on funcionario
+for each row
+update login set usuario = new.usuario where cod_funcionario=old.cod_funcionario;
+
+-- trigger que insere na tabela login com base na tab funcionario
 create trigger tr_login_func after insert
 on funcionario
 for each row
 insert into login(cod_funcionario,usuario,senha,nivel) values(new.cod_funcionario,new.usuario,new.senha,new.nivel_login);
 
+-- apaga da tab login antes de apagar na funcionario
+create trigger tr_login_delete before delete
+on funcionario
+for each row
+delete from login where cod_funcionario=old.cod_funcionario;
 
-select * from login;
-SELECT * FROM Categoria;
+-- apaga na tab login antes de apagar na cliente
+create trigger tr_login_deleteCli before delete
+on cliente
+for each row
+delete from login where cpf_cliente=old.cpf_cliente;
+
+SELECT * FROM LOGIN;
 
 SELECT * FROM Marca;
 
@@ -150,7 +170,7 @@ SELECT * FROM Locacao;
 
 SELECT * FROM Pagamento;
 
-SELECT * FROM Funcionario;
+select * FROM funcionario;
 
 SELECT * FROM Cliente;
 
