@@ -1,0 +1,83 @@
+﻿@model LocadoraDeVeiculos.Dominio.Categoria
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_ViewAdministrativa.cshtml";
+}
+
+<h2>Categoria</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    <br />
+    <h4>Detalhes</h4>
+    <div class="form text-center" style="margin:5%">
+        <div class="form-group btn take-fundo btn-block" onclick="habilitar()">Editar</div><br />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        <table style="width:100%">
+            <tr>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { disabled = true, @class = "form-control", id = string.Format("nome") } })
+                            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Valor, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { disabled = true, @class = "form-control", id = string.Format("valor") } })
+                            @Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { disabled = true, @class = "form-control", id = string.Format("Descricao") } })
+                            @Html.ValidationMessageFor(model => model.Descricao, "", new { disabled = true, @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+
+        <div class="form-group" style="float:right">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn take-fundo btn-lg" />
+            </div>
+        </div>
+        <a class="btn take-fundo btn-lg" href="~/Categoria/Lista" style="float:left">
+            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                <path fill-rule="evenodd" d="M8.354 11.354a.5.5 0 0 0 0-.708L5.707 8l2.647-2.646a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708 0z" />
+                <path fill-rule="evenodd" d="M11.5 8a.5.5 0 0 0-.5-.5H6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5z" />
+            </svg>
+        </a>
+    </div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script>
+    function habilitar() {
+        document.getElementById("valor").disabled = false;
+        document.getElementById("nome").disabled = false;
+        document.getElementById("Descricao").disabled = false;
+        document.getElementById("sexo").disabled = false;
+        document.getElementById("login").disabled = false;
+        document.getElementById("nivel").disabled = false;
+    };
+</script>

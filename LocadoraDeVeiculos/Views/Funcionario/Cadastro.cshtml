@@ -1,117 +1,147 @@
 ﻿@model LocadoraDeVeiculos.Dominio.Funcionario
 
 @{
-    ViewBag.Title = "Cadastro";
+    ViewBag.Title = "Cadastro de funcionários";
     Layout = "~/Views/Shared/_ViewAdministrativa.cshtml";
 }
 @if (Session["usuarioLogado"] != null && Session["nivel"].ToString() == "3")
 {
-    <h2>Cadastro</h2>
+    <h2>Cadastro de Funcionário</h2>
 
+    <hr />
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<div class="form" style="margin:5%">
 
-    <div class="form-horizontal">
-        <h4>Funcionario</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Login, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <table style="width:100%">
+        <tr><th><h4>Dados Pessoais</h4></th></tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Cpf, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Cpf, new { htmlAttributes = new { @class = "form-control", id = string.Format("cpf") } })
+                        @Html.ValidationMessageFor(model => model.Cpf, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DataNasc, htmlAttributes: new { @class = "control-label col-md-10" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DataNasc, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DataNasc, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.DataNasc, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DataNasc, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DataNasc, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Sexo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <select id="sexo" name="sexo" class="form-control">
-                    <option selected value="Masculino">Masculino</option>
-                    <option value="Feminino">Feminino</option>
-                    <option value="Indefinido">Prefiro não dizer</option>
-                </select>
-                @Html.ValidationMessageFor(model => model.Sexo, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ConfirmarSenha, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ConfirmarSenha, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ConfirmarSenha, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Cpf, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Cpf, new { htmlAttributes = new { @class = "form-control", id = string.Format("cpf") } })
-                @Html.ValidationMessageFor(model => model.Cpf, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nivel, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <select id="nivel" name="nivel" class="form-control">
-                    <option selected value=2>--Selecione</option>
-                    <option value=2>Atendente</option>
-                    <option value=3>Administrador</option>
-                </select>
-                @Html.ValidationMessageFor(model => model.Nivel, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Cadastrar" class="btn btn-default" />
-            </div>
+        </tr>
+        <tr><td><br /></td></tr>
+        <tr style="width:100%">
+            <td>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Sexo, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <select id="sexo" name="sexo" class="form-control">
+                            <option selected value="Masculino">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                            <option value="Indefinido">Prefiro não dizer</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.Sexo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr><td><br /></td></tr>
+        <tr><td><hr /></td><td><hr /></td><td><hr /></td><td><hr /></td></tr>
+        <tr><th><h4>Dados de Usuário</h4></th></tr>
+        <tr>
+            <td>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Login, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ConfirmarSenha, htmlAttributes: new { @class = "control-label col-md-10" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ConfirmarSenha, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ConfirmarSenha, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Nivel, htmlAttributes: new { @class = "control-label col-md-10" })
+                    <div class="col-md-10">
+                        <select id="nivel" name="nivel" class="form-control">
+                            <option selected value=2>--Selecione</option>
+                            <option value=2>Atendente</option>
+                            <option value=3>Administrador</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.Nivel, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <div class="float-right">
+        <div>
+            <input type="submit" value="Cadastrar" class="btn take-fundo" />
         </div>
     </div>
+    <a class="btn take-fundo btn-lg" href="~/Funcionario/Lista" style="float:left">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+            <path fill-rule="evenodd" d="M8.354 11.354a.5.5 0 0 0 0-.708L5.707 8l2.647-2.646a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708 0z" />
+            <path fill-rule="evenodd" d="M11.5 8a.5.5 0 0 0-.5-.5H6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5z" />
+        </svg>
+    </a>
+</div>
+        
+    }
 }
 
-<div>
-    @Html.ActionLink("Voltar à lista", "Index")
-</div>
-}
 else if (Session["usuarioLogado"] != null && Session["nivel"].ToString() != "3")
 {
-<h3 class="jumbotron" style="color:red ">Você não tem permissão para cadastrar um novo funcionario</h3>
+    <h3 class="jumbotron text-center" style="color:red "><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-octagon-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm.394 4.708a.5.5 0 0 0-.708-.708L8 7.293 4.854 4.146a.5.5 0 1 0-.708.708L7.293 8l-3.147 3.146a.5.5 0 0 0 .708.708L8 8.707l3.146 3.147a.5.5 0 0 0 .708-.708L8.707 8l3.147-3.146z" />
+</svg><br /><br />VOCÊ NÃO TEM PERMISSÃO DE CADASTRAR UM NOVO FUNCIONARIO</h3>
 }
 
 @section Scripts {

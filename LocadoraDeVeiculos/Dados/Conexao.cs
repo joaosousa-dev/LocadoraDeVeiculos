@@ -26,6 +26,7 @@ namespace LocadoraDeVeiculos.Dados
 
             MySqlCommand cmd = new MySqlCommand(strQuery, con);
             return cmd.ExecuteReader();
+            con.Close();
         }
 
         public void Dispose()

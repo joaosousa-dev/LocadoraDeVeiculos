@@ -17,6 +17,7 @@ namespace LocadoraDeVeiculos.Dominio
         [DisplayName("Data de nascimento")]
         public DateTime DataNasc{ get; set; }
         [DataType(DataType.EmailAddress)]
+        [DisplayName("Email")]
         public string Email { get; set; }
         public string Sexo { get; set; }
       

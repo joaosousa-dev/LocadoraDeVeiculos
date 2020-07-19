@@ -1,4 +1,5 @@
-﻿using LocadoraDeVeiculos.Dominio;
+﻿using LocadoraDeVeiculos.Dados;
+using LocadoraDeVeiculos.Dominio;
 using LocadoraDeVeiculos.Metodos;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.UI;
 
 namespace LocadoraDeVeiculos.Controllers
 {
@@ -16,21 +18,18 @@ namespace LocadoraDeVeiculos.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
         public ActionResult Index(Login login)
         {
-
-        login = metodo.TestarUsuario(login);
-
-
-            if (login.Usuario != null && login.Senha != null && login.Nivel !=null)
+            login = metodo.TestarUsuario(login);
+            if (login.Usuario != null && login.Senha != null && login.Nivel != null)
             {
                 FormsAuthentication.SetAuthCookie(login.Usuario, false);
                 Session["usuarioLogado"] = login.Usuario.ToString();
                 Session["senhaLogado"] = login.Senha.ToString();
                 Session["nivel"] = login.Nivel.ToString();
-                
+
 
                 if (login.Nivel == "1")
                 {
@@ -45,8 +44,9 @@ namespace LocadoraDeVeiculos.Controllers
             {
                 Session["usuarioNegado"] = "NEGADO";
                 return RedirectToAction("Index", "Home");
+
             }
-        }
+                }
         public ActionResult Logout()
         {
             Session["usuarioLogado"] = null; // destruindo a sessão.
@@ -66,6 +66,12 @@ namespace LocadoraDeVeiculos.Controllers
                 return RedirectToAction("Index");
             }
             return View(cliente);
+        }
+        public ActionResult Lista()
+        {
+            var metodo = new MetodosGerais();
+            var veiculo = metodo.ListarVeiculo();
+            return View(veiculo);
         }
 
     }

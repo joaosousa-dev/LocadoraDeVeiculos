@@ -1,0 +1,26 @@
+﻿@model IEnumerable<LocadoraDeVeiculos.Dominio.Veiculo>
+@{
+    ViewBag.Title = "Lista";
+    Layout = "~/Views/Shared/_LayoutVeiculo.cshtml";
+}
+
+<h2>Frota de Veiculos</h2><br />
+<div class="form-inline" style="background-color:aliceblue;">
+
+    @foreach (var item in Model)
+    {
+    <div style="margin-left:5.5%">
+        <div class="card-body thumbnail">
+            <div class="card" style="width: 18rem">
+                <img class="card-img-top img-thumbnail img-responsive" style="max-height:200px; width: auto; height: auto;" src="@Url.Content(""+ @item.imagem)" alt="Imagem">
+
+                <h4 class="card-title text-center">@Html.DisplayFor(modelItem => item.modelo)</h4>
+                <p class="card-text text-center text-info">@Html.DisplayFor(modelItem => item.categoria)</p>
+                <div class="text-center">@Html.ActionLink("Ver detalhes", "DetalhesIndex", new { id = item.id }, new { @class = "btn take-fundo" })<br /><br /></div>
+
+            </div>
+        </div>
+    </div>
+    }
+
+</div>

@@ -149,3 +149,4 @@ C:\Users\gabri\OneDrive\Área de Trabalho\LocadoraDeVeiculos\LocadoraDeVeiculos\
 C:\Users\gabri\OneDrive\Área de Trabalho\LocadoraDeVeiculos\LocadoraDeVeiculos\obj\Debug\LocadoraDeVeiculos.csproj.CopyComplete
 C:\Users\gabri\OneDrive\Área de Trabalho\LocadoraDeVeiculos\LocadoraDeVeiculos\obj\Debug\LocadoraDeVeiculos.dll
 C:\Users\gabri\OneDrive\Área de Trabalho\LocadoraDeVeiculos\LocadoraDeVeiculos\obj\Debug\LocadoraDeVeiculos.pdb
+C:\Users\gabri\OneDrive\Área de Trabalho\LocadoraDeVeiculos\LocadoraDeVeiculos\bin\pt-br\System.Web.Mvc.resources.dll

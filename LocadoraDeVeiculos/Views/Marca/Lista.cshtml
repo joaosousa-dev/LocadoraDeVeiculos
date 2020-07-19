@@ -1,0 +1,39 @@
+﻿@model IEnumerable<LocadoraDeVeiculos.Dominio.Marca>
+
+@{
+    ViewBag.Title = "Marcas";
+    Layout = "~/Views/Shared/_ViewAdministrativa.cshtml";
+}
+
+<h2>Lista</h2>
+
+<p>
+    @Html.ActionLink("Cadastrar nova", "Cadastro")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nome)
+    </td>
+    <td>
+        @Html.ActionLink("Ver carros", "SelecionarCarros", new { id = item.Id }) |
+        @Html.ActionLink("Editar", "Editar", new { id = item.Id }) 
+    </td>
+</tr>
+}
+
+</table>

@@ -1,5 +1,5 @@
 CREATE DATABASE LocadoraSeven;
-USE LocadoraSeven;
+use LocadoraSeven;
 
 CREATE TABLE Categoria(
 cod_categoria int primary key auto_increment,
@@ -21,13 +21,13 @@ CREATE TABLE Veiculo(
 cod_veiculo int primary key auto_increment,
 cod_categoria int ,
 cod_marca int ,
-cod_seguro int ,
 placa_veiculo varchar(15),
 chassi_veiculo varchar(30),
 modelo_veiculo varchar(30),
+imagem varchar(1000),
+status_veiculo varchar(30) not null,
 foreign key (cod_categoria) references Categoria(cod_categoria),
-foreign key (cod_marca) references marca(cod_marca),
-foreign key (cod_seguro) references Seguro(cod_seguro)
+foreign key (cod_marca) references marca(cod_marca)
 );
 
 CREATE TABLE Manutencao(
@@ -67,8 +67,10 @@ foreign key (cpf_cliente) references Cliente(cpf_cliente)
 CREATE TABLE Locacao(
 cod_locacao int primary key auto_increment,
 cod_reserva int,
+cod_seguro int,
 data_locacao date,
 valor_locacao decimal(5,2),
+foreign key (cod_seguro) references Seguro(cod_seguro),
 foreign key (cod_reserva) references Reserva(cod_reserva));
 
 CREATE TABLE Pagamento(
@@ -91,10 +93,6 @@ sexo_funcionario varchar(10),
 usuario varchar(20) not null,
 senha varchar(15) not null,
 nivel_login int);
-
-insert into funcionario(cod_funcionario,nome_funcionario,data_nascimento,email_funcionario,cpf_funcionario,sexo_funcionario,usuario,senha,nivel_login) values (default,"jose","2001-03-02","jvoliveira@gmail.com","321.213.342-03","MASCULINO","jose123","12345",3);
-
-
 
 CREATE TABLE Telefone(
 cod_telefone int primary key auto_increment,
@@ -154,11 +152,33 @@ on cliente
 for each row
 delete from login where cpf_cliente=old.cpf_cliente;
 
-SELECT * FROM LOGIN;
+-- atualiza o status do veiculo
+create trigger tr_atualizaveiculo before insert
+on manutencao 
+for each row
+update veiculo set status_veiculo='Indisponivel' where cod_veiculo=new.cod_veiculo;
+
+create trigger tr_atualizaveiculo2 before delete
+on manutencao 
+for each row
+update veiculo set status_veiculo='Disponivel' where cod_veiculo=old.cod_veiculo;
+
+insert into funcionario(cod_funcionario,nome_funcionario,data_nascimento,email_funcionario,cpf_funcionario,sexo_funcionario,usuario,senha,nivel_login) values (default,"JOAO VICTOR DE S OLIVEIRA","2001-03-02","jvoliveira@gmail.com","321.213.342-03","MASCULINO","admin","admin",3);
+
+create view vwveiculo as 
+select cod_veiculo,m.cod_marca,c.cod_categoria,nome_marca,placa_veiculo,chassi_veiculo,modelo_veiculo,status_veiculo,nome_categoria,imagem from veiculo as v
+left join categoria as c on c.cod_categoria=v.cod_categoria
+left join marca as m on m.cod_marca = v.cod_marca;
+
+create view vwmanutencao as 
+select cod_manutencao,v.cod_veiculo,descricao_manutencao,v.modelo_veiculo,v.placa_veiculo,v.chassi_veiculo from manutencao as m
+left join veiculo as v on m.cod_veiculo=v.cod_veiculo;
+
+select * FROM vwmanutencao;
 
 SELECT * FROM Marca;
 
-SELECT * FROM Seguro;
+SELECT * FROM seguro;
 
 SELECT * FROM Veiculo;
 

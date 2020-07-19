@@ -22,3 +22,7 @@ select,
 textarea {
     max-width: 280px;
 }
+.take-fundo {
+    background-color:rgb(255, 109, 0);
+    color: black;
+}
